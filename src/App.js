@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 
+import PrivateRoute from './components/PrivateRoute'
 import Login from './components/login'
+import FriendsList from './components/friendsList'
 
 function App() {
   return (
@@ -16,6 +18,13 @@ function App() {
           </nav>
 
         <Routes>
+          {/* <Route path tp='/friends/add' element={null}/> */}
+          <Route 
+            path='/friends' 
+            element={<PrivateRoute/>}>
+          <Route element={<FriendsList/>}/> 
+          </Route>
+          
           <Route path='/login' element={<Login/>}/>
           <Route path='/' element={<Login/>}/>
         </Routes>
