@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute'
+
 import Login from './components/login'
 import FriendsList from './components/friendsList'
+import AddFriend from './components/addFriends'
+import Logout from './components/logout'
 
 function App() {
   return (
@@ -14,20 +16,16 @@ function App() {
               <Link to='/login'>LOGIN.</Link>
               <Link to='/friends'>FRIENDLIST.</Link>
               <Link to='/friends/add'>ADDFRIEND.</Link>
-              <Link to='/logout'>LOGOUT.</Link>
+              <Link to='/logout' onClick={() => {Logout}}>LOGOUT.</Link>
           </nav>
 
-        <Routes>
-          {/* <Route path tp='/friends/add' element={null}/> */}
-          <Route 
-            path='/friends' 
-            element={<PrivateRoute/>}>
-          <Route element={<FriendsList/>}/> 
-          </Route>
-          
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/' element={<Login/>}/>
-        </Routes>
+        <Switch>
+          <Route path='/logout' component={Logout}/>
+          <PrivateRoute path='/friends/add' component={AddFriend} />
+          <PrivateRoute path='/friends' component={FriendsList} />
+          <Route path='/login' component={Login}/>
+          <Route path='/' component={Login}/>
+        </Switch>
       </div>
   );
 }

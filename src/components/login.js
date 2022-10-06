@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import axios from 'axios'
-
 import axiosWithAuth from '../Utils/axiosWithAuth'
 
 function Login(){
@@ -20,8 +18,8 @@ function Login(){
    const handleSubmit = (e) => {
       e.preventDefault()
 
-      axios
-         .post('http://localhost:9000/api/login', credentials)
+      axiosWithAuth()
+         .post('/login', credentials)
          .then(res => {
             localStorage.setItem('token', res.data.token)
             //Redirecting to Friends List
@@ -50,7 +48,7 @@ function Login(){
                value={credentials.password}
                onChange={handleChange}
             />
-            <button onClick={handleSubmit}>Submit</button>
+            <button onClick={handleSubmit}>SUBMIT</button>
          </form>
       </div>
    )
