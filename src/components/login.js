@@ -1,16 +1,17 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axiosWithAuth from '../Utils/axiosWithAuth'
+import axios from 'axios'
 
-function Login(){
+function Login() {
    const [credentials, setCredentials] = useState({
-      username: 'Bloom', 
-      password: 'Tech'
+      username: '',
+      password: ''
    })
 
    const handleChange = (e) => {
-      const {name, value} = e.target
+      const { name, value } = e.target
       setCredentials({
-         ...credentials, 
+         ...credentials,
          [name]: value
       })
    }
@@ -30,7 +31,7 @@ function Login(){
          })
    }
 
-   return(
+   return (
       <div>
          <h2> LOGIN </h2>
          <form>
@@ -40,9 +41,9 @@ function Login(){
                name='username'
                value={credentials.username}
                onChange={handleChange}
-               />
+            />
             <label> PASSWORD </label>
-            <input 
+            <input
                type='text'
                name='password'
                value={credentials.password}
